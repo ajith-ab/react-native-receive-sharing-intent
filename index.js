@@ -1,5 +1,5 @@
 import { NativeModules, Platform, Linking } from 'react-native';
-import MimeTypes from "./mimeType.json";
+import MimeTypes from "./mimeTypes";
 
 const { ReceiveSharingIntent } = NativeModules;
 
@@ -7,94 +7,108 @@ const isIos = Platform.OS === 'ios';
 
 export default class ReceiveSharingIntentModule {
     
-    constructor(){
-        this.url = "";
+    static getRreceivedFiles = (handler, errorHandler) => {
+        if (isIos) {
+            Linking.getInitialURL().then(res => {
+                if (res && res.startsWith("ShareMedia://dataUrl")) {
+                    this.getFileNames(handler, errorHandler, res);
+                }
+            }).catch(e => { });
+            Linking.addEventListener("url", (res) => {
+                console.log(res);
+                let url = res ? res.url : "";
+                if (url.startsWith("ShareMedia://dataUrl")) {
+                    this.getFileNames(handler,errorHandler, res.url);
+                }
+            });
+        }else{
+            this.getFileNames(handler,errorHandler, null);
+        }
     }
-    
-    
-    // static getFileNames = () =>  new Promise((resolve, reject) => {
-    //     ReceiveSharingIntent.getFileNames().then(fileObject => {
-    //         let files = Object.keys(fileObject).map((k) => fileObject[k])
-    //         resolve(files);
-    //     }).catch(e=>{
-    //         reject(e);
-    //     })
-        
-    // });
-    
-    static getSharedName = (handler) => {
-        Linking.getInitialURL().then(res =>{
-            if(res && res.url && res.url.startsWith("ShareMedia://dataUrl")){
-                handler(res.url);
-            }
-        } ).catch(e=>{});
-        Linking.addEventListener("url",(res)=>{
-            console.log(res);
-            let url = res ? res.url : "";
-            if(url.startsWith("ShareMedia://dataUrl")){
-                handler(res.url);
-            }
-        });
-    }
-    
-    
-    
-    
-    
-    static getFileNamess = (url) => new Promise((resolve, reject)=>{
+
+
+    static getFileNames = (handler,errorHandler, url) => {
+        console.log("ajith")
         if(isIos){
-            ReceiveSharingIntent.getFileNames(url).then(data=>{
-               let files = this.iosSortedData(data);
-                resolve(files);
-            }).catch(e=>reject(data));
-          }else{
-              reject("asda")
-          } 
-    });
-    
- 
-    
-    
+        ReceiveSharingIntent.getFileNames(url).then(data=>{         
+             let files = iosSortedData(data);
+             handler(files);
+        }).catch(e=>errorHandler(e));
+        }else{
+            ReceiveSharingIntent.getFileNames().then(fileObject => {
+                let files = Object.keys(fileObject).map((k) => fileObject[k])
+                handler(files);
+            }).catch(e=>{
+                errorHandler(e)
+            })
+        }
+    }
+
+
     static clearFileNames = () => {
         ReceiveSharingIntent.clearFileNames();
     }
-    
-    
-    
-    iosSortedData = (data) => {
-      let objects =   { filePath:null, text:null, weblink:null, mimeType: null, contentUri:null, fileName:null, extension:null };
-        
-      let file = data;
-      if(file.startsWith('text:')){
-          let text = file.replace("text:", "");
-          let object = [
-              { ...objects , text:text }
-          ];
-          return object;
-      }else if(file.startsWith('webUrl:')){
-        let weblink = file.replace("webUrl:", "");
+
+}
+
+
+const iosSortedData = (data) => {
+    let objects = { filePath: null, text: null, weblink: null, mimeType: null, contentUri: null, fileName: null, extension: null };
+    let file = data;
+    if (file.startsWith('text:')) {
+        let text = file.replace("text:", "");
+        if (text.startsWith("http")) {
+            let object = [
+                { ...objects, weblink: text }
+            ];
+            return object;
+        }
         let object = [
-            { ...objects , weblink:weblink }
+            { ...objects, text: text }
         ];
         return object;
-      }else{
+    } else if (file.startsWith('webUrl:')) {
+        let weblink = file.replace("webUrl:", "");
+        let object = [
+            { ...objects, weblink: weblink }
+        ];
+        return object;
+    } else {
         try {
-            let files = JSON.parse(file)  
+            let files = JSON.parse(file)
             let object = [];
             for (let i = 0; i < files.length; i++) {
-                let singleFile = files[i];
-                
-                object.push(singleFile);
-                
+                let path = files[i].path;
+                let obj = {
+                    ...objects,
+                    fileName: getFileName(path),
+                    extension: getExtension(path),
+                    mimeType: getMimeType(path),
+                    filePath: path
+                }
+                object.push(obj);
             }
-            
             return object;
         } catch (error) {
-            return "error";
-        }  
-      } 
+            return [{ ...objects }];
+        }
     }
-    
-    
-    
+}
+
+
+var getFileName = (file) => {
+    return file.replace(/^.*(\\|\/|\:)/, '');
+}
+
+var getExtension = (fileName) => {
+    return fileName.substr(fileName.lastIndexOf('.') + 1);
+}
+
+var getMimeType = (file) => {
+    let ext = getExtension(file);
+    let extension = "." + ext.toLowerCase();
+    if (MimeTypes[extension]) {
+        return MimeTypes[extension];
+    }
+    return null
 }
