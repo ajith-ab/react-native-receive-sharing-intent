@@ -7,7 +7,7 @@ const isIos = Platform.OS === 'ios';
 
 export default class ReceiveSharingIntentModule {
     
-    static getRreceivedFiles = (handler, errorHandler) => {
+    static getReceivedFiles = (handler, errorHandler) => {
         if (isIos) {
             Linking.getInitialURL().then(res => {
                 if (res && res.startsWith("ShareMedia://dataUrl")) {
@@ -28,7 +28,6 @@ export default class ReceiveSharingIntentModule {
 
 
     static getFileNames = (handler,errorHandler, url) => {
-        console.log("ajith")
         if(isIos){
         ReceiveSharingIntent.getFileNames(url).then(data=>{         
              let files = iosSortedData(data);
@@ -45,7 +44,7 @@ export default class ReceiveSharingIntentModule {
     }
 
 
-    static clearFileNames = () => {
+    static clearReceivedFiles = () => {
         ReceiveSharingIntent.clearFileNames();
     }
 

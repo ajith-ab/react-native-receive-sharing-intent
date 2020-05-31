@@ -19,8 +19,8 @@
 		3BD9DC6D0FC835AD5E664711 /* libPods-example-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2599AC237CEED13C0710B83F /* libPods-example-tvOSTests.a */; };
 		65879B5BDCA0FD07EFB891ED /* libPods-example-exampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF23CD66BD5549916CC509C /* libPods-example-exampleTests.a */; };
 		B8482C9B24820F7B00A8D28C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8482C9A24820F7B00A8D28C /* ShareViewController.swift */; };
-		B8482C9E24820F7B00A8D28C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8482C9C24820F7B00A8D28C /* MainInterface.storyboard */; };
 		B8482CA224820F7B00A8D28C /* Example Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B8482C9824820F7B00A8D28C /* Example Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B8482CB12483EBD600A8D28C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8482CB02483EBD600A8D28C /* MainInterface.storyboard */; };
 		CDC3864FAE95B15EB049249E /* libPods-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B2151F7CB11F9E5C7C8AFC /* libPods-example.a */; };
 		CEC1EB60F22E465839A1638C /* libPods-example-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4F46ABB0044A84E9747567 /* libPods-example-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -91,9 +91,9 @@
 		B8482C8424819B9700A8D28C /* example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = example.entitlements; path = example/example.entitlements; sourceTree = "<group>"; };
 		B8482C9824820F7B00A8D28C /* Example Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Example Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8482C9A24820F7B00A8D28C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		B8482C9D24820F7B00A8D28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B8482C9F24820F7B00A8D28C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8482CA624820F8300A8D28C /* Example Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example Share.entitlements"; sourceTree = "<group>"; };
+		B8482CB02483EBD600A8D28C /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainInterface.storyboard; path = ../../../../MainInterface.storyboard; sourceTree = "<group>"; };
 		BD88113B6D819FE9053FCD85 /* Pods-example-exampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.release.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -225,9 +225,9 @@
 		B8482C9924820F7B00A8D28C /* Example Share */ = {
 			isa = PBXGroup;
 			children = (
+				B8482CB02483EBD600A8D28C /* MainInterface.storyboard */,
 				B8482CA624820F8300A8D28C /* Example Share.entitlements */,
 				B8482C9A24820F7B00A8D28C /* ShareViewController.swift */,
-				B8482C9C24820F7B00A8D28C /* MainInterface.storyboard */,
 				B8482C9F24820F7B00A8D28C /* Info.plist */,
 			);
 			path = "Example Share";
@@ -449,7 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8482C9E24820F7B00A8D28C /* MainInterface.storyboard in Resources */,
+				B8482CB12483EBD600A8D28C /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,14 +683,6 @@
 			);
 			name = LaunchScreen.xib;
 			path = example;
-			sourceTree = "<group>";
-		};
-		B8482C9C24820F7B00A8D28C /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B8482C9D24820F7B00A8D28C /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

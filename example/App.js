@@ -7,7 +7,7 @@ const App = () => {
     const [files, setFiles] = useState([]);
     
   useEffect(()=>{
-    ReceiveSharingIntent.getRreceivedFiles(files => {
+    ReceiveSharingIntent.getReceivedFiles(files => {
       setFiles(files)
         console.log(files);
     }, 
@@ -16,7 +16,7 @@ const App = () => {
     });
     
     return () => {
-      ReceiveSharingIntent.clearFileNames();
+      ReceiveSharingIntent.clearReceivedFiles();
     }
   },[]);
   
