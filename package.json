@@ -1,14 +1,15 @@
 {
   "name": "react-native-receive-sharing-intent",
   "title": "React Native Receive Sharing Intent",
-  "version": "0.0.4",
-  "description": "TODO",
+  "version": "0.0.5",
+  "description": "A React Native plugin that enables React Native apps to receive sharing photos, videos, text, urls or any other file types from another app ",
   "main": "index.js",
   "files": [
     "README.md",
     "android",
     "index.js",
     "ios",
+    "mimeType.js",
     "react-native-receive-sharing-intent.podspec"
   ],
   "scripts": {
@@ -20,11 +21,34 @@
     "baseUrl": "https://github.com/github_account/react-native-receive-sharing-intent"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "share-extension",
+    "receive-sharing-intent",
+    "pdf file receive",
+    "file receive",
+    "image receive",
+    "video receive",
+    "ios share extension",
+    "android file receive",
+    "multiple file receive",
+    "multiple file receive react native",
+    "ios multiple file receive",
+    "share extension open main app",
+    "app group",
+    "text receive",
+    "whats app receive",
+    "youtube receive",
+    "other app receive",
+    "all file receive",
+    "android",
+    "ios"
   ],
+  "bugs": {
+    "url": "https://github.com/github_account/react-native-receive-sharing-intent/issues"
+  },
   "author": {
-    "name": "Your Name",
-    "email": "yourname@email.com"
+    "name": "Ajith A B",
+    "email": "ajith4ab@gmail.com"
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",
