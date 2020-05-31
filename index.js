@@ -1,5 +1,5 @@
 import { NativeModules, Platform, Linking } from 'react-native';
-import MimeTypes from "./mimeTypes";
+import MimeTypes from "./mimeType";
 
 const { ReceiveSharingIntent } = NativeModules;
 
