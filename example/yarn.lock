@@ -5500,10 +5500,10 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-receive-sharing-intent@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-receive-sharing-intent/-/react-native-receive-sharing-intent-0.0.5.tgz#2d68369ed8e681072b346527551be65549028e06"
-  integrity sha512-6iiw5Sbd0i5zBbTl81wkK69bbWcZyf5pa1gSivjVN9ckysDyQERDa5URDTGd0KOSNcJqWKuuex5dKQje48686A==
+react-native-receive-sharing-intent@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-receive-sharing-intent/-/react-native-receive-sharing-intent-1.0.0.tgz#d4418f0be2e831bf66c613111a540faa24ec0f27"
+  integrity sha512-hA7qyoZwzBvwpUu0ACrnjmMDcTN3zy+0+CzybuN6n1NulbE8Q/TtCysjRZ9AYXiNthLF98Y6oXi9OOvkuYQkXw==
 
 react-native@0.62.2:
   version "0.62.2"
