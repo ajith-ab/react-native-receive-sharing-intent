@@ -580,7 +580,16 @@ extension Array {
 
 - Go to the Capabilities tab and switch on the App Groups switch for both targets. Add a new group and name it group.YOUR_HOST_APP_BUNDLE_IDENTIFIER in my case group.com.ajith.example
 
-1. 
+- App group name must be start with `group.`
+
+1. Create a app group for main App
+
+![group text](https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/app%20group2.png)
+
+2. Create a app group for Share Extension
+
+![group text](https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/app%20group1.png)
+
 
 #### Compiling issues and their fixes
   - Error: App does not build after adding Share Extension?
@@ -607,7 +616,5 @@ import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
     
     // To clear Intents
     ReceiveSharingIntent.clearReceivedFiles();
-    
-    
     
 ```
