@@ -18,9 +18,9 @@
 		2DCD954D1E0B4F2C00145EB5 /* exampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* exampleTests.m */; };
 		3BD9DC6D0FC835AD5E664711 /* libPods-example-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2599AC237CEED13C0710B83F /* libPods-example-tvOSTests.a */; };
 		65879B5BDCA0FD07EFB891ED /* libPods-example-exampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF23CD66BD5549916CC509C /* libPods-example-exampleTests.a */; };
-		B8482C9B24820F7B00A8D28C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8482C9A24820F7B00A8D28C /* ShareViewController.swift */; };
-		B8482CA224820F7B00A8D28C /* Example Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B8482C9824820F7B00A8D28C /* Example Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		B8482CB12483EBD600A8D28C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8482CB02483EBD600A8D28C /* MainInterface.storyboard */; };
+		B8482CB9248403C600A8D28C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8482CB8248403C600A8D28C /* ShareViewController.swift */; };
+		B8482CBC248403C600A8D28C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8482CBA248403C600A8D28C /* MainInterface.storyboard */; };
+		B8482CC0248403C600A8D28C /* Examples share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B8482CB6248403C600A8D28C /* Examples share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CDC3864FAE95B15EB049249E /* libPods-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B2151F7CB11F9E5C7C8AFC /* libPods-example.a */; };
 		CEC1EB60F22E465839A1638C /* libPods-example-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4F46ABB0044A84E9747567 /* libPods-example-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -40,12 +40,12 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "example-tvOS";
 		};
-		B8482CA024820F7B00A8D28C /* PBXContainerItemProxy */ = {
+		B8482CBE248403C600A8D28C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B8482C9724820F7B00A8D28C;
-			remoteInfo = "Example Share";
+			remoteGlobalIDString = B8482CB5248403C600A8D28C;
+			remoteInfo = "Examples share";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -56,7 +56,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				B8482CA224820F7B00A8D28C /* Example Share.appex in Embed App Extensions */,
+				B8482CC0248403C600A8D28C /* Examples share.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,11 +89,11 @@
 		5F4F46ABB0044A84E9747567 /* libPods-example-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A4B15080BFE44169847557 /* Pods-example-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-tvOS.release.xcconfig"; path = "Target Support Files/Pods-example-tvOS/Pods-example-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		B8482C8424819B9700A8D28C /* example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = example.entitlements; path = example/example.entitlements; sourceTree = "<group>"; };
-		B8482C9824820F7B00A8D28C /* Example Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Example Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8482C9A24820F7B00A8D28C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		B8482C9F24820F7B00A8D28C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8482CA624820F8300A8D28C /* Example Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example Share.entitlements"; sourceTree = "<group>"; };
-		B8482CB02483EBD600A8D28C /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainInterface.storyboard; path = ../../../../MainInterface.storyboard; sourceTree = "<group>"; };
+		B8482CB6248403C600A8D28C /* Examples share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Examples share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8482CB8248403C600A8D28C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		B8482CBB248403C600A8D28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B8482CBD248403C600A8D28C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8482CC4248403CB00A8D28C /* Examples share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Examples share.entitlements"; sourceTree = "<group>"; };
 		BD88113B6D819FE9053FCD85 /* Pods-example-exampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.release.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -132,7 +132,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8482C9524820F7B00A8D28C /* Frameworks */ = {
+		B8482CB3248403C600A8D28C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -200,7 +200,7 @@
 				13B07FAE1A68108700A75B9A /* example */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* exampleTests */,
-				B8482C9924820F7B00A8D28C /* Example Share */,
+				B8482CB7248403C600A8D28C /* Examples share */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				F1563BC135F4A64B68FCD3B7 /* Pods */,
@@ -217,20 +217,20 @@
 				00E356EE1AD99517003FC87E /* exampleTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* example-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* example-tvOSTests.xctest */,
-				B8482C9824820F7B00A8D28C /* Example Share.appex */,
+				B8482CB6248403C600A8D28C /* Examples share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B8482C9924820F7B00A8D28C /* Example Share */ = {
+		B8482CB7248403C600A8D28C /* Examples share */ = {
 			isa = PBXGroup;
 			children = (
-				B8482CB02483EBD600A8D28C /* MainInterface.storyboard */,
-				B8482CA624820F8300A8D28C /* Example Share.entitlements */,
-				B8482C9A24820F7B00A8D28C /* ShareViewController.swift */,
-				B8482C9F24820F7B00A8D28C /* Info.plist */,
+				B8482CC4248403CB00A8D28C /* Examples share.entitlements */,
+				B8482CB8248403C600A8D28C /* ShareViewController.swift */,
+				B8482CBA248403C600A8D28C /* MainInterface.storyboard */,
+				B8482CBD248403C600A8D28C /* Info.plist */,
 			);
-			path = "Example Share";
+			path = "Examples share";
 			sourceTree = "<group>";
 		};
 		F1563BC135F4A64B68FCD3B7 /* Pods */ = {
@@ -285,7 +285,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B8482CA124820F7B00A8D28C /* PBXTargetDependency */,
+				B8482CBF248403C600A8D28C /* PBXTargetDependency */,
 			);
 			name = example;
 			productName = example;
@@ -331,21 +331,21 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* example-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B8482C9724820F7B00A8D28C /* Example Share */ = {
+		B8482CB5248403C600A8D28C /* Examples share */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8482CA324820F7B00A8D28C /* Build configuration list for PBXNativeTarget "Example Share" */;
+			buildConfigurationList = B8482CC1248403C600A8D28C /* Build configuration list for PBXNativeTarget "Examples share" */;
 			buildPhases = (
-				B8482C9424820F7B00A8D28C /* Sources */,
-				B8482C9524820F7B00A8D28C /* Frameworks */,
-				B8482C9624820F7B00A8D28C /* Resources */,
+				B8482CB2248403C600A8D28C /* Sources */,
+				B8482CB3248403C600A8D28C /* Frameworks */,
+				B8482CB4248403C600A8D28C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Example Share";
-			productName = "Example Share";
-			productReference = B8482C9824820F7B00A8D28C /* Example Share.appex */;
+			name = "Examples share";
+			productName = "Examples share";
+			productReference = B8482CB6248403C600A8D28C /* Examples share.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -379,7 +379,7 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
-					B8482C9724820F7B00A8D28C = {
+					B8482CB5248403C600A8D28C = {
 						CreatedOnToolsVersion = 10.2.1;
 						DevelopmentTeam = SKSU65MPQW;
 						ProvisioningStyle = Automatic;
@@ -408,7 +408,7 @@
 				00E356ED1AD99517003FC87E /* exampleTests */,
 				2D02E47A1E0B4A5D006451C7 /* example-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* example-tvOSTests */,
-				B8482C9724820F7B00A8D28C /* Example Share */,
+				B8482CB5248403C600A8D28C /* Examples share */,
 			);
 		};
 /* End PBXProject section */
@@ -445,11 +445,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8482C9624820F7B00A8D28C /* Resources */ = {
+		B8482CB4248403C600A8D28C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8482CB12483EBD600A8D28C /* MainInterface.storyboard in Resources */,
+				B8482CBC248403C600A8D28C /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,11 +647,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8482C9424820F7B00A8D28C /* Sources */ = {
+		B8482CB2248403C600A8D28C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8482C9B24820F7B00A8D28C /* ShareViewController.swift in Sources */,
+				B8482CB9248403C600A8D28C /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,10 +668,10 @@
 			target = 2D02E47A1E0B4A5D006451C7 /* example-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
-		B8482CA124820F7B00A8D28C /* PBXTargetDependency */ = {
+		B8482CBF248403C600A8D28C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8482C9724820F7B00A8D28C /* Example Share */;
-			targetProxy = B8482CA024820F7B00A8D28C /* PBXContainerItemProxy */;
+			target = B8482CB5248403C600A8D28C /* Examples share */;
+			targetProxy = B8482CBE248403C600A8D28C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -683,6 +683,14 @@
 			);
 			name = LaunchScreen.xib;
 			path = example;
+			sourceTree = "<group>";
+		};
+		B8482CBA248403C600A8D28C /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8482CBB248403C600A8D28C /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1010,7 +1018,7 @@
 			};
 			name = Release;
 		};
-		B8482CA424820F7B00A8D28C /* Debug */ = {
+		B8482CC2248403C600A8D28C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1019,18 +1027,18 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "Example Share/Example Share.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Examples share/Examples share.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = SKSU65MPQW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Example Share/Info.plist";
+				INFOPLIST_FILE = "Examples share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cankado.example.Example-Share";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cankado.example.Examples-share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1040,7 +1048,7 @@
 			};
 			name = Debug;
 		};
-		B8482CA524820F7B00A8D28C /* Release */ = {
+		B8482CC3248403C600A8D28C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1049,18 +1057,18 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "Example Share/Example Share.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Examples share/Examples share.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SKSU65MPQW;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Example Share/Info.plist";
+				INFOPLIST_FILE = "Examples share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cankado.example.Example-Share";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cankado.example.Examples-share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1117,11 +1125,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8482CA324820F7B00A8D28C /* Build configuration list for PBXNativeTarget "Example Share" */ = {
+		B8482CC1248403C600A8D28C /* Build configuration list for PBXNativeTarget "Examples share" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8482CA424820F7B00A8D28C /* Debug */,
-				B8482CA524820F7B00A8D28C /* Release */,
+				B8482CC2248403C600A8D28C /* Debug */,
+				B8482CC3248403C600A8D28C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

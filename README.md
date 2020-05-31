@@ -4,6 +4,16 @@ A React Native plugin that enables React Native apps to receive sharing photos, 
 
 Also, supports iOS Share extension and launching the host app automatically. Check the provided example for more info.
 
+## Demo
+
+| Android | Ios | 
+| :---: | :---: | 
+| ![android text](https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/android.gif) | ![android text](https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/android.gif) |
+
+
+
+
+
 ## Installation
 
 #### Npm
