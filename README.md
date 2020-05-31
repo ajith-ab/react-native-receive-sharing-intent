@@ -11,9 +11,6 @@ Also, supports iOS Share extension and launching the host app automatically. Che
 | ![android text](https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/android.gif) | ![android text](https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/ios.gif) |
 
 
-
-
-
 ## Installation
 
 #### Npm
@@ -628,3 +625,16 @@ import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
     ReceiveSharingIntent.clearReceivedFiles();
     
 ```
+
+
+### Donate
+
+<p><a href="https://www.paypal.me/ajithab" rel="nofollow"><img height="75" src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" style="max-width:100%;"></a></p>
+
+
+### Author
+[Ajith A B](https://www.linkedin.com/in/ajith-a-b-a61303197)
+
+### licenses
+
+MIT
