@@ -1,63 +1,46 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React, {useEffect} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  StatusBar
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
 
 const App = () => {
+    const [files, setFiles] = useState([]);
     
   useEffect(()=>{
-    
-    
-    
-    ReceiveSharingIntent.getSharedName((url)=>{
-      console.log("link",url);
-      ReceiveSharingIntent.getFileNamess(url).then(file=>{
-        console.log(file)
-      }).catch(e=>console.log(e));
+    ReceiveSharingIntent.getRreceivedFiles(files => {
+      setFiles(files)
+        console.log(files);
+    }, 
+    (error) =>{
+      console.log(error);
     });
     
-   
-    // ReceiveSharingIntent.getFileNames().then(file => {
-    //     console.log(file);
-    // }).catch(e => console.log(e));
     return () => {
       ReceiveSharingIntent.clearFileNames();
     }
   },[]);
   
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <View >
-          <Text onPress={()=> ReceiveSharingIntent.clearFileName()} style={styles.container}>
-          asd
-          </Text>
-        </View>
-      </SafeAreaView>
-    </>
+    <View style={styles.container}>
+    <Text style={{fontSize:28,fontWeight:"bold"}}> Shared Files</Text>
+    <FlatList
+      data={files}
+      renderItem={({item}) => <Text style={styles.item}>{item.fileName ? item.fileName : item.weblink}</Text>}
+    />
+  </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container:{
-    
-    justifyContent:'center'
-  }
-});
+  container: {
+   flex: 1,
+   paddingTop: 22
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+})
 
 export default App;

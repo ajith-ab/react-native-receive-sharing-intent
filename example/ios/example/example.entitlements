@@ -8,7 +8,7 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.cankado.example.Example-Share</string>
+		<string>group.com.cankado.example</string>
 	</array>
 </dict>
 </plist>
