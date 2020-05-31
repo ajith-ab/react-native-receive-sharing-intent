@@ -12,17 +12,25 @@ import {
   StyleSheet,
   View,
   Text,
-  StatusBar,
+  StatusBar
 } from 'react-native';
 
 import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
 
 const App = () => {
-  
+    
   useEffect(()=>{
-    ReceiveSharingIntent.getFileNames().then(data=> {
-      console.log(data);
-    })
+    
+    
+    
+    ReceiveSharingIntent.getSharedName((url)=>{
+      console.log("link",url);
+      ReceiveSharingIntent.getFileNamess(url).then(file=>{
+        console.log(file)
+      }).catch(e=>console.log(e));
+    });
+    
+   
     // ReceiveSharingIntent.getFileNames().then(file => {
     //     console.log(file);
     // }).catch(e => console.log(e));
