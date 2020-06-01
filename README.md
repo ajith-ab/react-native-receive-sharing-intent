@@ -8,8 +8,7 @@ Also, supports iOS Share extension and launching the host app automatically. Che
 
 | Android | Ios | 
 | :---: | :---: | 
-| <img height="400" src="https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/android.gif" />
-| <img height="400"  src="https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/ios.gif" /> |
+| <img height="400" src="https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/android.gif" />| <img height="400"  src="https://raw.githubusercontent.com/ajith-ab/react-native-receive-sharing-intent/master/doc/ios.gif" /> |
 
 
 ## Installation
