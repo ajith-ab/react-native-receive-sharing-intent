@@ -23,6 +23,12 @@ $ npm install react-native-receive-sharing-intent --save
 $ yarn add react-native-receive-sharing-intent
 ```
 
+#### Ios
+
+```bash
+$ cd ios && pod install
+```
+
 
 ### Mostly automatic installation less than React Native `0.60.0`
 
@@ -311,6 +317,7 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.sharedText, forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .text)
         }
         
@@ -332,6 +339,7 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.sharedText, forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .text)
         }
         
@@ -345,7 +353,7 @@ class ShareViewController: SLComposeServiceViewController {
     attachment.loadItem(forTypeIdentifier: imageContentType, options: nil) { [weak self] data, error in
       
       if error == nil, let url = data as? URL, let this = self {
-      //  this.redirectToHostApp(type: .media)
+        //  this.redirectToHostApp(type: .media)
         // Always copy
         let fileExtension = this.getExtension(from: url, type: .video)
         let newName = UUID().uuidString
@@ -356,12 +364,13 @@ class ShareViewController: SLComposeServiceViewController {
         if(copied) {
           this.sharedMedia.append(SharedMediaFile(path: newPath.absoluteString, thumbnail: nil, duration: nil, type: .image))
         }
-
+        
         // If this is the last item, save imagesData in userDefaults and redirect to host app
         if index == (content.attachments?.count)! - 1 {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .media)
         }
         
@@ -395,6 +404,7 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .media)
         }
         
@@ -423,6 +433,7 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .file)
         }
         
@@ -579,6 +590,7 @@ extension Array {
     return Int(index) < count ? self[Int(index)] : nil
   }
 }
+
 
 
 
