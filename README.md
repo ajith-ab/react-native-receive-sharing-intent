@@ -23,7 +23,7 @@ $ npm install react-native-receive-sharing-intent --save
 $ yarn add react-native-receive-sharing-intent
 ```
 
-#### Ios
+#### ios
 
 ```bash
 $ cd ios && pod install
