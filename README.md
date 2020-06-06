@@ -313,7 +313,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.sharedText, forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .text)
         }
         
@@ -335,7 +334,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.sharedText, forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .text)
         }
         
@@ -366,7 +364,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .media)
         }
         
@@ -400,7 +397,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .media)
         }
         
@@ -429,7 +425,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .file)
         }
         
