@@ -68,6 +68,7 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.sharedText, forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .text)
         }
         
@@ -89,6 +90,7 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.sharedText, forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .text)
         }
         
@@ -119,6 +121,7 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .media)
         }
         
@@ -146,12 +149,13 @@ class ShareViewController: SLComposeServiceViewController {
           }
           this.sharedMedia.append(sharedFile)
         }
-        
+
         // If this is the last item, save imagesData in userDefaults and redirect to host app
         if index == (content.attachments?.count)! - 1 {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .media)
         }
         
@@ -180,6 +184,7 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
+           self?.didSelectPost();
           this.redirectToHostApp(type: .file)
         }
         
