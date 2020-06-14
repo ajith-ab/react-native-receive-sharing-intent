@@ -1,4 +1,4 @@
-import { NativeModules, Platform, Linking } from 'react-native';
+import { NativeModules, Platform, Linking, AppState } from 'react-native';
 import MimeTypes from "./mimeType";
 
 const { ReceiveSharingIntent } = NativeModules;
@@ -22,6 +22,11 @@ export default class ReceiveSharingIntentModule {
                 }
             });
         }else{
+            AppState.addEventListener('change', (status) => {
+                if (status === 'active') {
+                    this.getFileNames(handler,errorHandler, null);
+                }
+              });
             this.getFileNames(handler,errorHandler, null);
         }
     }
