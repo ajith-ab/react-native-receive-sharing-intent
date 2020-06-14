@@ -274,8 +274,8 @@ class ShareViewController: SLComposeServiceViewController {
   override func isContentValid() -> Bool {
     return true
   }
-  
-  override func viewDidLoad() {
+
+  override func didSelectPost() {
     // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
     if let content = extensionContext!.inputItems[0] as? NSExtensionItem {
       if let contents = content.attachments {
@@ -295,11 +295,7 @@ class ShareViewController: SLComposeServiceViewController {
       }
     }
   }
-  
-  override func didSelectPost() {
-    print("didSelectPost");
-  }
-  
+
   override func configurationItems() -> [Any]! {
     // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
     return []
@@ -317,7 +313,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.sharedText, forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .text)
         }
         
@@ -339,7 +334,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.sharedText, forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .text)
         }
         
@@ -370,7 +364,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .media)
         }
         
@@ -404,7 +397,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .media)
         }
         
@@ -433,7 +425,6 @@ class ShareViewController: SLComposeServiceViewController {
           let userDefaults = UserDefaults(suiteName: "group.\(this.hostAppBundleIdentifier)")
           userDefaults?.set(this.toData(data: this.sharedMedia), forKey: this.sharedKey)
           userDefaults?.synchronize()
-           self?.didSelectPost();
           this.redirectToHostApp(type: .file)
         }
         
