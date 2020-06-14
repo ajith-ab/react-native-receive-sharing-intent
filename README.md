@@ -50,7 +50,7 @@ Note: `Ios and Android on Debbuging time not working at sometimes while App is C
       <application .... >
             <activity
               ....
-              android:launchMode="singleTop"> <!--TODO IMPORTANT.set launchMode -> singleTop or standard -->
+              android:launchMode="singleTask"> <!--TODO IMPORTANT.set launchMode -> singleTask Recommended -->
               
             .....
           <intent-filter>
@@ -115,6 +115,33 @@ Note: `Ios and Android on Debbuging time not working at sometimes while App is C
      </application>
 
 </manifest>    
+```
+
+- On MainActivity on your react-native app 
+` <Project_folder>/android/app/src/main/java/com/YOUR_APP/MainActivity.java` :
+
+```java
+
+// on top of your file
+import android.content.Intent;
+
+...
+
+public class MainActivity extends ReactActivity {
+
+...
+
+// on your MainActivity Class body
+@Override
+public void onNewIntent(Intent intent) {
+  super.onNewIntent(intent);
+  setIntent(intent);
+}
+
+...
+
+}
+
 ```
 
 ### Ios
