@@ -26,7 +26,6 @@ class ReceiveSharingIntent: NSObject {
                       resolver resolve: RCTPromiseResolveBlock,
                       rejecter reject: RCTPromiseRejectBlock
                       ) -> Void {
-
         let fileUrl = URL(string: url)
         let json =  handleUrl(url: fileUrl);
         if(json == "error"){
@@ -76,7 +75,7 @@ class ReceiveSharingIntent: NSObject {
                         guard let path = getAbsolutePath(for: $0.path) else {
                             return nil
                         }
-                        return SharedMediaFile.init(path: $0.path, thumbnail: nil, duration: nil, type: $0.type)
+                        return SharedMediaFile.init(path: path, thumbnail: nil, duration: nil, type: $0.type)
                     }
                     latestMedia = sharedMediaFiles
                      let json = toJson(data: latestMedia);
@@ -113,7 +112,7 @@ class ReceiveSharingIntent: NSObject {
     
     private func getAbsolutePath(for identifier: String) -> String? {
         if (identifier.starts(with: "file://") || identifier.starts(with: "/var/mobile/Media") || identifier.starts(with: "/private/var/mobile")) {
-            return identifier.replacingOccurrences(of: "file://", with: "")
+            return identifier;
         }
         let phAsset = PHAsset.fetchAssets(withLocalIdentifiers: [identifier], options: .none).firstObject
         if(phAsset == nil) {
