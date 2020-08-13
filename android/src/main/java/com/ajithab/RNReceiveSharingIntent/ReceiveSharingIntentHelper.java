@@ -31,6 +31,7 @@ public class ReceiveSharingIntentHelper {
             if(type == null) { return; }
             if(!type.startsWith("text") && (Objects.equals(action, Intent.ACTION_SEND) || Objects.equals(action, Intent.ACTION_SEND_MULTIPLE))){
                 WritableMap files = getMediaUris(intent,context);
+                if(files == null) return;
                 promise.resolve(files);
             }else if(type.startsWith("text") && Objects.equals(action, Intent.ACTION_SEND)){
                 String text = null;
@@ -39,6 +40,7 @@ public class ReceiveSharingIntentHelper {
                 }catch (Exception ignored){ }
                 if(text == null){
                     WritableMap files = getMediaUris(intent,context);
+                    if(files == null) return;
                     promise.resolve(files);
                 }else{
                     WritableMap files = new WritableNativeMap();
@@ -87,6 +89,7 @@ public class ReceiveSharingIntentHelper {
             WritableMap file = new WritableNativeMap();
             Uri contentUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
 
+            if(contentUri == null) return null;
             // Based on https://developer.android.com/training/secure-file-sharing/retrieve-info
             ContentResolver contentResolver = context.getContentResolver();
             file.putString("mimeType", contentResolver.getType(contentUri));
