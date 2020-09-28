@@ -31,8 +31,10 @@ public class ReceiveSharingIntentHelper {
                 promise.resolve(files);
             }else if(type.startsWith("text") && Objects.equals(action, Intent.ACTION_SEND)){
                 String text = null;
+                String subject = null;
                 try{
                     text = intent.getStringExtra(Intent.EXTRA_TEXT);
+                    subject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
                 }catch (Exception ignored){ }
                 if(text == null){
                     WritableMap files = getMediaUris(intent,context);
@@ -51,6 +53,7 @@ public class ReceiveSharingIntentHelper {
                         file.putString("weblink", null);
                         file.putString("text",text);
                     }
+                    file.putString("subject", subject);
                     files.putMap("0",file);
                     promise.resolve(files);
                 }
@@ -79,6 +82,12 @@ public class ReceiveSharingIntentHelper {
 
     public WritableMap getMediaUris(Intent intent, Context context){
         if (intent == null) return null;
+
+        String subject = null;
+        try{
+            subject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+        }catch (Exception ignored){ }
+
         WritableMap files = new WritableNativeMap();
         if(Objects.equals(intent.getAction(), Intent.ACTION_SEND)){
             WritableMap file = new WritableNativeMap();
@@ -97,6 +106,7 @@ public class ReceiveSharingIntentHelper {
             file.putString("filePath", filePath);
             file.putString("text",null);
             file.putString("weblink", null);
+            file.putString("subject", subject);
             files.putMap("0",file);
         }else if(Objects.equals(intent.getAction(), Intent.ACTION_SEND_MULTIPLE)) {
             ArrayList<Uri> contentUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
@@ -118,6 +128,7 @@ public class ReceiveSharingIntentHelper {
                     file.putString("filePath", filePath);
                     file.putString("text",null);
                     file.putString("weblink", null);
+                    file.putString("subject", subject);
                     files.putMap(Integer.toString(index),file);
                     index++;
                 }
