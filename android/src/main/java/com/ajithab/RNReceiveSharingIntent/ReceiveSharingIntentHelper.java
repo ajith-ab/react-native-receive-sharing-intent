@@ -40,15 +40,9 @@ public class ReceiveSharingIntentHelper {
                 }else{
                     WritableMap files = new WritableNativeMap();
                     WritableMap file = new WritableNativeMap();
-                    file.putString("contentUri",null);
-                    file.putString("filePath", null);
-                    file.putString("fileName", null);
-                    file.putString("extension", null);
                     if(text.startsWith("http")){
                         file.putString("weblink", text);
-                        file.putString("text",null);
                     }else{
-                        file.putString("weblink", null);
                         file.putString("text",text);
                     }
                     files.putMap("0",file);
@@ -59,13 +53,12 @@ public class ReceiveSharingIntentHelper {
                 String link = intent.getDataString();
                 WritableMap files = new WritableNativeMap();
                 WritableMap file = new WritableNativeMap();
-                file.putString("contentUri",null);
-                file.putString("filePath", null);
-                file.putString("mimeType",null);
-                file.putString("text",null);
-                file.putString("weblink", link);
-                file.putString("fileName", null);
-                file.putString("extension", null);
+                if (type.startsWith("image") || type.startsWith("video") || type.startsWith("audio")) {
+                    String filePath = ReceiveSharingIntentGetFileDirectory.getFilePath(context, Uri.parse(link));
+                    file.putString("filePath", filePath);
+                } else {
+                    file.putString("weblink", link);
+                }
                 files.putMap("0",file);
                 promise.resolve(files);
             }else{
@@ -83,21 +76,17 @@ public class ReceiveSharingIntentHelper {
         if(Objects.equals(intent.getAction(), Intent.ACTION_SEND)){
             WritableMap file = new WritableNativeMap();
             Uri contentUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-            String filePath =   ReceiveSharingIntentGetFileDirectory.getFilePath(context, contentUri);
-            if(filePath != null){
-                file.putString("fileName", getFileName(filePath));
-                file.putString("extension", getExtension(filePath));
-                file.putString("mimeType",getMediaType(filePath));
-            }else{
-                file.putString("fileName", null);
-                file.putString("extension", null);
-                file.putString("mimeType",null);
+            if (contentUri != null){
+                String filePath = ReceiveSharingIntentGetFileDirectory.getFilePath(context, contentUri);
+                if (filePath != null) {
+                    file.putString("fileName", getFileName(filePath));
+                    file.putString("extension", getExtension(filePath));
+                    file.putString("mimeType",getMediaType(filePath));
+                    file.putString("filePath",filePath);
+                }
+                file.putString("contentUri",contentUri.toString());
+                files.putMap("0",file);
             }
-            file.putString("contentUri",contentUri.toString());
-            file.putString("filePath", filePath);
-            file.putString("text",null);
-            file.putString("weblink", null);
-            files.putMap("0",file);
         }else if(Objects.equals(intent.getAction(), Intent.ACTION_SEND_MULTIPLE)) {
             ArrayList<Uri> contentUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
             if (contentUris != null) {
@@ -141,6 +130,7 @@ public class ReceiveSharingIntentHelper {
         } else if (type.startsWith("image") || type.startsWith("video") || type.startsWith("application")) {
             intent.removeExtra(Intent.EXTRA_STREAM);
         }
+        intent.setData(null);
     }
 
     public String getFileName(String file){
