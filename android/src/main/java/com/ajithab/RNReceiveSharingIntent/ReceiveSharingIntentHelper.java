@@ -69,6 +69,7 @@ public class ReceiveSharingIntentHelper {
         }
     };
 
+
     public WritableMap getMediaUris(Intent intent, Context context){
         if (intent == null) return null;
         WritableMap files = new WritableNativeMap();
