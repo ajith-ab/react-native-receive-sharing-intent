@@ -1,9 +1,12 @@
 package com.ajithab.RNReceiveSharingIntent;
 
 import android.app.Application;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.provider.OpenableColumns;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.WritableMap;
@@ -28,6 +31,7 @@ public class ReceiveSharingIntentHelper {
             if(type == null) { return; }
             if(!type.startsWith("text") && (Objects.equals(action, Intent.ACTION_SEND) || Objects.equals(action, Intent.ACTION_SEND_MULTIPLE))){
                 WritableMap files = getMediaUris(intent,context);
+                if(files == null) return;
                 promise.resolve(files);
             }else if(type.startsWith("text") && Objects.equals(action, Intent.ACTION_SEND)){
                 String text = null;
@@ -36,6 +40,7 @@ public class ReceiveSharingIntentHelper {
                 }catch (Exception ignored){ }
                 if(text == null){
                     WritableMap files = getMediaUris(intent,context);
+                    if(files == null) return;
                     promise.resolve(files);
                 }else{
                     WritableMap files = new WritableNativeMap();
@@ -83,18 +88,16 @@ public class ReceiveSharingIntentHelper {
         if(Objects.equals(intent.getAction(), Intent.ACTION_SEND)){
             WritableMap file = new WritableNativeMap();
             Uri contentUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-            String filePath =   ReceiveSharingIntentGetFileDirectory.getFilePath(context, contentUri);
-            if(filePath != null){
-                file.putString("fileName", getFileName(filePath));
-                file.putString("extension", getExtension(filePath));
-                file.putString("mimeType",getMediaType(filePath));
-            }else{
-                file.putString("fileName", null);
-                file.putString("extension", null);
-                file.putString("mimeType",null);
-            }
+
+            if(contentUri == null) return null;
+            // Based on https://developer.android.com/training/secure-file-sharing/retrieve-info
+            ContentResolver contentResolver = context.getContentResolver();
+            file.putString("mimeType", contentResolver.getType(contentUri));
+            Cursor queryResult = contentResolver.query(contentUri, null, null, null, null);
+            queryResult.moveToFirst();
+            file.putString("fileName", queryResult.getString(queryResult.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+
             file.putString("contentUri",contentUri.toString());
-            file.putString("filePath", filePath);
             file.putString("text",null);
             file.putString("weblink", null);
             files.putMap("0",file);
@@ -104,18 +107,15 @@ public class ReceiveSharingIntentHelper {
                 int index = 0;
                 for (Uri uri : contentUris) {
                     WritableMap file = new WritableNativeMap();
-                    String filePath = ReceiveSharingIntentGetFileDirectory.getFilePath(context, uri);
-                    if(filePath != null){
-                        file.putString("fileName", getFileName(filePath));
-                        file.putString("extension", getExtension(filePath));
-                        file.putString("mimeType",getMediaType(filePath));
-                    }else{
-                        file.putString("fileName", null);
-                        file.putString("extension", null);
-                        file.putString("mimeType",null);
-                    }
+                    ContentResolver contentResolver = context.getContentResolver();
+
+                    // Based on https://developer.android.com/training/secure-file-sharing/retrieve-info
+                    file.putString("mimeType", contentResolver.getType(uri));
+                    Cursor queryResult = contentResolver.query(uri, null, null, null, null);
+                    queryResult.moveToFirst();
+                    file.putString("fileName", queryResult.getString(queryResult.getColumnIndex(OpenableColumns.DISPLAY_NAME)));
+
                     file.putString("contentUri",uri.toString());
-                    file.putString("filePath", filePath);
                     file.putString("text",null);
                     file.putString("weblink", null);
                     files.putMap(Integer.toString(index),file);
