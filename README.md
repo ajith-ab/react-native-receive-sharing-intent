@@ -161,7 +161,7 @@ public void onNewIntent(Intent intent) {
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ShareMedia</string>
+				<string>ShareMedia</string> <!-- share url protocol (must be unique to your app, suggest using your apple bundle id) -->
 			</array>
 		</dict>
 		<dict/>
@@ -289,6 +289,7 @@ import Photos
 class ShareViewController: SLComposeServiceViewController {
   // TODO: IMPORTANT: This should be your host app bundle identifier
   let hostAppBundleIdentifier = "com.ajith.example"
+  let shareProtocol = "ShareMedia" hostAppBundleIdentifier //share url protocol (must be unique to your app, suggest using your apple bundle id, ie: `hostAppBundleIdentifier`)
   let sharedKey = "ShareKey"
   var sharedMedia: [SharedMediaFile] = []
   var sharedText: [String] = []
@@ -475,7 +476,7 @@ class ShareViewController: SLComposeServiceViewController {
   }
   
   private func redirectToHostApp(type: RedirectType) {
-    let url = URL(string: "ShareMedia://dataUrl=\(sharedKey)#\(type)")
+    let url = URL(string: "\(shareProtocol)://dataUrl=\(sharedKey)#\(type)")
     var responder = self as UIResponder?
     let selectorOpenURL = sel_registerName("openURL:")
     
@@ -648,7 +649,9 @@ import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
     }, 
     (error) =>{
       console.log(error);
-    });
+    }, 
+    'ShareMedia' // share url protocol (must be unique to your app, suggest using your apple bundle id)
+    );
     
     
     // To clear Intents
