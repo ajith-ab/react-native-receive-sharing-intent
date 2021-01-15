@@ -7,17 +7,17 @@ const isIos = Platform.OS === 'ios';
 
 export default class ReceiveSharingIntentModule {
     
-    static getReceivedFiles = (handler, errorHandler) => {
+    static getReceivedFiles = (handler, errorHandler, protocol = 'ShareMedia') => {
         if (isIos) {
             Linking.getInitialURL().then(res => {
-                if (res && res.startsWith("ShareMedia://dataUrl")) {
+                if (res && res.startsWith(`${protocol}://dataUrl`)) {
                     this.getFileNames(handler, errorHandler, res);
                 }
             }).catch(e => { });
             Linking.addEventListener("url", (res) => {
                 console.log(res);
                 let url = res ? res.url : "";
-                if (url.startsWith("ShareMedia://dataUrl")) {
+                if (url.startsWith(`${protocol}://dataUrl`)) {
                     this.getFileNames(handler,errorHandler, res.url);
                 }
             });
