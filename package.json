@@ -8,6 +8,7 @@
     "README.md",
     "android",
     "index.js",
+    "index.d.ts",
     "ios",
     "mimeType.js",
     "react-native-receive-sharing-intent.podspec"
