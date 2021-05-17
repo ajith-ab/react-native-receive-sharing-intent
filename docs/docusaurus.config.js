@@ -3,7 +3,7 @@ module.exports = {
   title: 'React Native Receive Sharing Intent',
   tagline: 'A React Native plugin that enables React Native apps to receive sharing photos, videos, text, urls or any other file types from another app.',
   url: 'https://ajith-ab.github.io',
-  baseUrl: '/react-native-receive-sharing-intent/docs/',
+  baseUrl: '/react-native-receive-sharing-intent/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
