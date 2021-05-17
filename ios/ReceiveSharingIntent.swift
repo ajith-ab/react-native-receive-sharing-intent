@@ -1,13 +1,4 @@
-//
-//  ReceiveSharingIntent.swift
-//  ReceiveSharingIntent
-//
-//  Created by Ajith A B on 30/05/20.
-//  Copyright © 2020 Facebook. All rights reserved.
-//
-
 import Foundation
-import UIKit
 import Photos
 
 
@@ -173,21 +164,14 @@ class ReceiveSharingIntent: NSObject {
     }
     
     
-    
-    
     @objc
     func clearFileNames(){
-
         print("clearFileNames");
     }
     
-
-    
-
 
     @objc
     static func requiresMainQueueSetup() -> Bool {
         return true
     }
-    
 }
