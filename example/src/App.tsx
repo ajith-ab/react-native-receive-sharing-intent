@@ -1,8 +1,7 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text, NativeModules } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
-var NativeModuleEx = NativeModules.ReceiveSharingIntent;
 
 
 export default function App() {
@@ -10,18 +9,14 @@ export default function App() {
   React.useEffect(() => {
     ReceiveSharingIntent.getReceivedFiles((data:any)=> {
       console.log(data);
-      
     },
-    ()=>{
+    (err:any)=>{
+      console.log(err);
+    });
 
-    },
-    
-    "");
-
-    NativeModuleEx.getFileNames('Some String !');
-
-
-
+    return () => {
+      ReceiveSharingIntent.clearReceivedFiles();
+    }
   }, []);
 
   return (
