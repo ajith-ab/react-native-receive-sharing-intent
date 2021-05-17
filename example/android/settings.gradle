@@ -1,3 +1,6 @@
-rootProject.name = 'example'
+rootProject.name = 'ReceiveSharingIntentExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
+
+include ':reactnativereceivesharingintent'
+project(':reactnativereceivesharingintent').projectDir = new File(rootProject.projectDir, '../../android')

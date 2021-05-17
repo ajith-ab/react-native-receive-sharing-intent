@@ -1,0 +1,6 @@
+module Pods_ReceiveSharingIntentExample {
+  umbrella header "Pods-ReceiveSharingIntentExample-umbrella.h"
+
+  export *
+  module * { export * }
+}

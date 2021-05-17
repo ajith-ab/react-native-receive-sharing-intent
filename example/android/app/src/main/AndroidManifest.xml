@@ -1,9 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example">
+  package="com.example.reactnativereceivesharingintent">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -22,68 +21,62 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
 
+        <!--  FOR ReceiveSharingIntent-->
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
 
+          <!--TODO:  Add this filter, if you want support opening urls into your app-->
+          <data
+            android:scheme="https"
+            android:host="example.com"
+            android:pathPrefix="/invite"/>
+        </intent-filter>
 
-          <intent-filter>
-              <action android:name="android.intent.action.VIEW" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <category android:name="android.intent.category.BROWSABLE" />
-              <!--TODO:  Add this filter, if you want support opening urls into your app-->
-              <data
-                  android:scheme="https"
-                  android:host="example.com"
-                  android:pathPrefix="/invite"/>
-          </intent-filter>
+        <!--TODO: Add this filter, if you want to support sharing text into your app-->
+        <intent-filter>
+          <action android:name="android.intent.action.SEND" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="text/*" />
+        </intent-filter>
 
-          <!--TODO: Add this filter, if you want to support sharing text into your app-->
-          <intent-filter>
-              <action android:name="android.intent.action.SEND" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <data android:mimeType="text/*" />
-          </intent-filter>
+        <!--TODO: Add this filter, if you want to support sharing images into your app-->
+        <intent-filter>
+          <action android:name="android.intent.action.SEND" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="image/*" />
+        </intent-filter>
 
-          <!--TODO: Add this filter, if you want to support sharing images into your app-->
-          <intent-filter>
-              <action android:name="android.intent.action.SEND" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <data android:mimeType="image/*" />
-          </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.SEND_MULTIPLE" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="image/*" />
+        </intent-filter>
 
-          <intent-filter>
-              <action android:name="android.intent.action.SEND_MULTIPLE" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <data android:mimeType="image/*" />
-          </intent-filter>
+        <!--TODO: Add this filter, if you want to support sharing videos into your app-->
+        <intent-filter>
+          <action android:name="android.intent.action.SEND" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="video/*" />
+        </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.SEND_MULTIPLE" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="video/*" />
+        </intent-filter>
 
-          <!--TODO: Add this filter, if you want to support sharing videos into your app-->
-          <intent-filter>
-              <action android:name="android.intent.action.SEND" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <data android:mimeType="video/*" />
-          </intent-filter>
-          <intent-filter>
-              <action android:name="android.intent.action.SEND_MULTIPLE" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <data android:mimeType="video/*" />
-          </intent-filter>
-
-          <!--TODO: Add this filter, if you want to support sharing any type of files-->
-          <intent-filter>
-              <action android:name="android.intent.action.SEND" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <data android:mimeType="*/*" />
-          </intent-filter>
-          <intent-filter>
-              <action android:name="android.intent.action.SEND_MULTIPLE" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <data android:mimeType="*/*" />
-          </intent-filter>
-
-
-
-
-
-
+        <!--TODO: Add this filter, if you want to support sharing any type of files-->
+        <intent-filter>
+          <action android:name="android.intent.action.SEND" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="*/*" />
+        </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.SEND_MULTIPLE" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="*/*" />
+        </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>

@@ -1,0 +1,6 @@
+module react_native_receive_sharing_intent {
+  umbrella header "react-native-receive-sharing-intent-umbrella.h"
+
+  export *
+  module * { export * }
+}
