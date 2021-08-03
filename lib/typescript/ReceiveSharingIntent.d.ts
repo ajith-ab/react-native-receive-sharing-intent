@@ -1,4 +1,4 @@
-import type { IReceiveSharingIntent } from "./ReceiveSharingIntent.interfaces";
+import type { IReceiveSharingIntent } from './ReceiveSharingIntent.interfaces';
 declare class ReceiveSharingIntentModule implements IReceiveSharingIntent {
     private isIos;
     private utils;

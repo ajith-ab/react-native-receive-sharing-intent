@@ -1,16 +1,16 @@
 import Foundation
 import Photos
 
-
 @objc(ReceiveSharingIntent)
 class ReceiveSharingIntent: NSObject {
     
-    private var initialMedia: [SharedMediaFile]? = nil
-    private var latestMedia: [SharedMediaFile]? = nil
+    struct Share: Codable {
+        var media: [SharedMediaFile] = []
+        var text: [String] = []
+        var urls: [String] = []
+    }
     
-    private var initialText: String? = nil
-    private var latestText: String? = nil
-    
+    private var share = Share()
     
     @objc
     func getFileNames(_ url: String,
@@ -30,71 +30,39 @@ class ReceiveSharingIntent: NSObject {
         }
     }
     
-    
-    
-    
     private func handleUrl(url: URL?) -> String? {
         if let url = url {
             let appDomain = Bundle.main.bundleIdentifier!
             let userDefaults = UserDefaults(suiteName: "group.\(appDomain)")
-            if url.fragment == "media" {
-                if let key = url.host?.components(separatedBy: "=").last,
-                    let json = userDefaults?.object(forKey: key) as? Data {
-                    let sharedArray = decode(data: json)
-                    let sharedMediaFiles: [SharedMediaFile] = sharedArray.compactMap {
-                        guard let path = getAbsolutePath(for: $0.path) else {
-                            return nil
-                        }
-                        if ($0.type == .video && $0.thumbnail != nil) {
-                            let thumbnail = getAbsolutePath(for: $0.thumbnail!)
-                            return SharedMediaFile.init(path: path, thumbnail: thumbnail, duration: $0.duration, type: $0.type)
-                        } else if ($0.type == .video && $0.thumbnail == nil) {
+                if let key = url.host?.components(separatedBy: "=").last {
+
+                    if let mediaJson = userDefaults?.object(forKey: "\(key).media") as? Data {
+                        let mediaSharedArray = decode(data: mediaJson)
+                        let sharedMediaFiles: [SharedMediaFile] = mediaSharedArray.compactMap {
+                            guard let path = getAbsolutePath(for: $0.path) else {
+                                return nil
+                            }
+                            if ($0.type == .video && $0.thumbnail != nil) {
+                                let thumbnail = getAbsolutePath(for: $0.thumbnail!)
+                                return SharedMediaFile.init(path: path, thumbnail: thumbnail, duration: $0.duration, type: $0.type)
+                            } else if ($0.type == .video && $0.thumbnail == nil) {
+                                return SharedMediaFile.init(path: path, thumbnail: nil, duration: $0.duration, type: $0.type)
+                            }
+                            
                             return SharedMediaFile.init(path: path, thumbnail: nil, duration: $0.duration, type: $0.type)
                         }
-                        
-                        return SharedMediaFile.init(path: path, thumbnail: nil, duration: $0.duration, type: $0.type)
+                        self.share.media = sharedMediaFiles
                     }
-                    latestMedia = sharedMediaFiles
-                    let json = toJson(data: latestMedia);
-                    return json;
-                }
-            } else if url.fragment == "file" {
-                if let key = url.host?.components(separatedBy: "=").last,
-                    let json = userDefaults?.object(forKey: key) as? Data {
-                    let sharedArray = decode(data: json)
-                    let sharedMediaFiles: [SharedMediaFile] = sharedArray.compactMap{
-                        guard let path = getAbsolutePath(for: $0.path) else {
-                            return nil
-                        }
-                        return SharedMediaFile.init(path: path, thumbnail: nil, duration: nil, type: $0.type)
+                    if let textSharedArray = userDefaults?.object(forKey: "\(key).text") as? [String] {
+                        self.share.text =  textSharedArray
                     }
-                    latestMedia = sharedMediaFiles
-                     let json = toJson(data: latestMedia);
-                    return json;
-                }
-            } else if url.fragment == "text" {
-                if let key = url.host?.components(separatedBy: "=").last,
-                    let sharedArray = userDefaults?.object(forKey: key) as? [String] {
-                    latestText =  sharedArray.joined(separator: ",")
-                    
-                    let optionalString = latestText;
-                    if let unwrapped = optionalString {
-                        let text = "text:" + unwrapped;
-                        return text;
+                    if let textSharedArray = userDefaults?.object(forKey: "\(key).url") as? [String] {
+                        self.share.urls =  textSharedArray
                     }
-                    return latestText!;
-                    
+                    let encodedData = try? JSONEncoder().encode(self.share)
+                    let json = String(data: encodedData!, encoding: .utf8)!
+                    return json
                 }
-            } else {
-                latestText = url.absoluteString
-                
-                let optionalString = latestText;
-                // now unwrap it
-                if let unwrapwebUrl = optionalString {
-                    let webUrl = "webUrl:"+unwrapwebUrl;
-                   return webUrl;
-                }
-            }
             return "error"
         }
         return "invalid group name"
@@ -131,15 +99,6 @@ class ReceiveSharingIntent: NSObject {
     private func decode(data: Data) -> [SharedMediaFile] {
         let encodedData = try? JSONDecoder().decode([SharedMediaFile].self, from: data)
         return encodedData!
-    }
-    
-    private func toJson(data: [SharedMediaFile]?) -> String? {
-        if data == nil {
-            return nil
-        }
-        let encodedData = try? JSONEncoder().encode(data)
-        let json = String(data: encodedData!, encoding: .utf8)!
-        return json
     }
     
     class SharedMediaFile: Codable {
