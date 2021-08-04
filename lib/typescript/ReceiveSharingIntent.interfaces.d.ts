@@ -3,6 +3,9 @@ export interface IReceiveSharingIntent {
 }
 export interface IUtils {
     sortData(data: any): any;
+    getFileName(file: string): string;
+    getExtension(fileName: string): string;
+    getMimeType(file: string): string;
 }
 export interface IReturnData {
     filePath?: any | string;

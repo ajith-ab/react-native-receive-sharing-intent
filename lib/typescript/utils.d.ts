@@ -1,4 +1,4 @@
-import type { IReturnData, IUtils } from "./ReceiveSharingIntent.interfaces";
+import type { IReturnData, IUtils } from './ReceiveSharingIntent.interfaces';
 declare class Utils implements IUtils {
     sortData(data: any): Array<IReturnData>;
     getFileName: (file: string) => string;
