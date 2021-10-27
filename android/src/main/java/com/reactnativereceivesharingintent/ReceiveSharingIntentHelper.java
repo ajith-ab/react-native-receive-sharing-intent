@@ -29,6 +29,7 @@ public class ReceiveSharingIntentHelper {
   @RequiresApi(api = Build.VERSION_CODES.KITKAT)
   public void sendFileNames(Context context, Intent intent, Promise promise){
     try {
+      if(intent == null) { return; }
       String action = intent.getAction();
       String type = intent.getType();
       if(type == null) { return; }
