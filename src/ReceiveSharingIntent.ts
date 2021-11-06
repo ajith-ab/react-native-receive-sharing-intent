@@ -15,29 +15,30 @@ class ReceiveSharingIntentModule implements IReceiveSharingIntent {
   getReceivedFiles(
     handler: Function,
     errorHandler: Function,
-    protocol: string = 'ShareMedia'
+    protocol: string = 'ShareMedia',
+    groupName: string | null = null
   ) {
     if (this.isIos) {
       Linking.getInitialURL()
         .then((res: any) => {
           if (res && res.startsWith(`${protocol}://dataUrl`) && !this.isClear) {
-            this.getFileNames(handler, errorHandler, res);
+            this.getFileNames(handler, errorHandler, res, groupName);
           }
         })
         .catch(() => {});
       Linking.addEventListener('url', (res: any) => {
         const url = res ? res.url : '';
         if (url.startsWith(`${protocol}://dataUrl`) && !this.isClear) {
-          this.getFileNames(handler, errorHandler, res.url);
+          this.getFileNames(handler, errorHandler, res.url, groupName);
         }
       });
     } else {
       AppState.addEventListener('change', (status: string) => {
         if (status === 'active' && !this.isClear) {
-          this.getFileNames(handler, errorHandler, '');
+          this.getFileNames(handler, errorHandler, '', null);
         }
       });
-      if (!this.isClear) this.getFileNames(handler, errorHandler, '');
+      if (!this.isClear) this.getFileNames(handler, errorHandler, '', null);
     }
   }
 
@@ -48,10 +49,11 @@ class ReceiveSharingIntentModule implements IReceiveSharingIntent {
   protected getFileNames(
     handler: Function,
     errorHandler: Function,
-    url: string
+    url: string,
+    groupName: string | null
   ) {
     if (this.isIos) {
-      ReceiveSharingIntent.getFileNames(url)
+      ReceiveSharingIntent.getFileNames(url, groupName)
         .then((data: any) => {
           let files = this.utils.sortData(data);
           handler(files);
