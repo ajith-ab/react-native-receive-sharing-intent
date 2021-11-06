@@ -1,3 +1,3 @@
-import ReceiveSharingIntentModule from "./ReceiveSharingIntent";
+import ReceiveSharingIntentModule from './ReceiveSharingIntent';
 
 export default new ReceiveSharingIntentModule();
