@@ -54,7 +54,7 @@ public class ReceiveSharingIntentHelper {
         if(text == null){
           WritableMap files = getMediaUris(intent,context);
           if(files == null) {
-            WritableMap files = new WritableNativeMap();
+            files = new WritableNativeMap();
             promise.resolve(files);
             return;
           }
