@@ -39,7 +39,7 @@ public class ReceiveSharingIntentHelper {
       if(!type.startsWith("text") && (Objects.equals(action, Intent.ACTION_SEND) || Objects.equals(action, Intent.ACTION_SEND_MULTIPLE))){
         WritableMap files = getMediaUris(intent,context);
         if(files == null) {
-          WritableMap files = new WritableNativeMap();
+          files = new WritableNativeMap();
           promise.resolve(files);
           return;
         }
