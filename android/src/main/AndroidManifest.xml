@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.reactnativereceivesharingintent">
-
+  <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="30" />
 </manifest>
