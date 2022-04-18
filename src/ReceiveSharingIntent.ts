@@ -33,7 +33,8 @@ class ReceiveSharingIntentModule implements IReceiveSharingIntent {
     }
 
     clearReceivedFiles(){
-        this.isClear = true;
+        // this.isClear = true;
+        ReceiveSharingIntent.clearFileNames();
     }
 
     
