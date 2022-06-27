@@ -18,6 +18,9 @@ public class ReceiveSharingIntentModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
   private ReceiveSharingIntentHelper receiveSharingIntentHelper;
+  
+  // https://github.com/ajith-ab/react-native-receive-sharing-intent/issues/110
+  private Intent oldIntent;
 
   public ReceiveSharingIntentModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -31,6 +34,9 @@ public class ReceiveSharingIntentModule extends ReactContextBaseJavaModule {
     Activity mActivity = getCurrentActivity();
     if(mActivity == null) { return; }
     mActivity.setIntent(intent);
+    
+    // https://github.com/ajith-ab/react-native-receive-sharing-intent/issues/110
+    oldIntent = mActivity.getIntent();
   }
 
   @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -40,7 +46,11 @@ public class ReceiveSharingIntentModule extends ReactContextBaseJavaModule {
     if(mActivity == null) { return; }
     Intent intent = mActivity.getIntent();
     receiveSharingIntentHelper.sendFileNames(reactContext, intent, promise);
-    mActivity.setIntent(null);
+    
+    // https://github.com/ajith-ab/react-native-receive-sharing-intent/issues/110
+    if (oldIntent != null) {
+      mActivity.setIntent(oldIntent);
+    }
   }
 
   @ReactMethod
