@@ -1,7 +1,8 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'React Native Receive Sharing Intent',
-  tagline: 'A React Native plugin that enables React Native apps to receive sharing photos, videos, text, urls or any other file types from another app.',
+  tagline:
+    'A React Native plugin that enables React Native apps to receive sharing photos, videos, text, urls or any other file types from another app.',
   url: 'https://ajith-ab.github.io',
   baseUrl: '/react-native-receive-sharing-intent/',
   onBrokenLinks: 'throw',
@@ -30,7 +31,8 @@ module.exports = {
           label: 'Demo',
         },
         {
-          href: 'https://ajith-ab.github.io/react-native-receive-sharing-intent',
+          href:
+            'https://ajith-ab.github.io/react-native-receive-sharing-intent',
           label: 'GitHub',
           position: 'right',
         },
@@ -53,12 +55,13 @@ module.exports = {
           items: [
             {
               label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/React-Native-Receive-Sharing-Intent',
-            }
+              href:
+                'https://stackoverflow.com/questions/tagged/React-Native-Receive-Sharing-Intent',
+            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} React Native Receive Sharing Intent.`
+      copyright: `Copyright © ${new Date().getFullYear()} React Native Receive Sharing Intent.`,
     },
   },
   presets: [

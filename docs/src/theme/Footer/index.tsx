@@ -9,10 +9,10 @@ import React from 'react';
 import clsx from 'clsx';
 
 import Link from '@docusaurus/Link';
-import {FooterLinkItem, useThemeConfig} from '@docusaurus/theme-common';
+import { FooterLinkItem, useThemeConfig } from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
-import ThemedImage, {Props as ThemedImageProps} from '@theme/ThemedImage';
+import ThemedImage, { Props as ThemedImageProps } from '@theme/ThemedImage';
 
 function FooterLink({
   to,
@@ -22,7 +22,7 @@ function FooterLink({
   ...props
 }: FooterLinkItem) {
   const toUrl = useBaseUrl(to);
-  const normalizedHref = useBaseUrl(href, {forcePrependBaseUrl: true});
+  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
 
   return (
     <Link
@@ -34,7 +34,8 @@ function FooterLink({
         : {
             to: toUrl,
           })}
-      {...props}>
+      {...props}
+    >
       {label}
     </Link>
   );
@@ -48,9 +49,9 @@ const FooterLogo = ({
 );
 
 function Footer(): JSX.Element | null {
-  const {footer} = useThemeConfig();
+  const { footer } = useThemeConfig();
 
-  const {copyright, links = [], logo = {}} = footer || {};
+  const { copyright, links = [], logo = {} } = footer || {};
   const sources = {
     light: useBaseUrl(logo.src),
     dark: useBaseUrl(logo.srcDark || logo.src),
@@ -64,7 +65,8 @@ function Footer(): JSX.Element | null {
     <footer
       className={clsx('footer', {
         'footer--dark': footer.style === 'dark',
-      })}>
+      })}
+    >
       <div className="container">
         {links && links.length > 0 && (
           <div className="row footer__links">
@@ -92,7 +94,7 @@ function Footer(): JSX.Element | null {
                         <li key={item.href || item.to} className="footer__item">
                           <FooterLink {...item} />
                         </li>
-                      ),
+                      )
                     )}
                   </ul>
                 ) : null}

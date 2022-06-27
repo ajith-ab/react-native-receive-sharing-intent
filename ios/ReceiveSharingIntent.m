@@ -5,6 +5,7 @@
 @interface RCT_EXTERN_MODULE(ReceiveSharingIntent, NSObject)
 
 RCT_EXTERN_METHOD(getFileNames:(NSString)url
+                  groupName: (NSString)groupName
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter: (RCTPromiseRejectBlock)reject);
 

@@ -14,11 +14,12 @@ class ReceiveSharingIntent: NSObject {
     
     @objc
     func getFileNames(_ url: String,
+                      groupName: String,
                       resolver resolve: RCTPromiseResolveBlock,
                       rejecter reject: RCTPromiseRejectBlock
                       ) -> Void {
         let fileUrl = URL(string: url)
-        let json =  handleUrl(url: fileUrl);
+        let json =  handleUrl(url: fileUrl, groupName: groupName);
         if(json == "error"){
             let error = NSError(domain: "", code: 400, userInfo: nil)
             reject("message", "file type is Invalid", error);
@@ -33,10 +34,10 @@ class ReceiveSharingIntent: NSObject {
     
     
     
-    private func handleUrl(url: URL?) -> String? {
+    private func handleUrl(url: URL?, groupName: String?) -> String? {
         if let url = url {
             let appDomain = Bundle.main.bundleIdentifier!
-            let userDefaults = UserDefaults(suiteName: "group.\(appDomain)")
+            let userDefaults = UserDefaults(suiteName: groupName ?? "group.\(appDomain)")
             if url.fragment == "media" {
                 if let key = url.host?.components(separatedBy: "=").last,
                     let json = userDefaults?.object(forKey: key) as? Data {
