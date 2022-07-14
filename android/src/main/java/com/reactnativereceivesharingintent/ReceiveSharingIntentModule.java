@@ -12,6 +12,9 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeMap;
+
 
 public class ReceiveSharingIntentModule extends ReactContextBaseJavaModule {
   public final String Log_Tag = "ReceiveSharingIntent";
@@ -37,10 +40,14 @@ public class ReceiveSharingIntentModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void getFileNames(Promise promise){
     Activity mActivity = getCurrentActivity();
-    if(mActivity == null) { return; }
+    if(mActivity == null) { 
+      WritableMap files = new WritableNativeMap();
+      promise.resolve(files);
+      return; 
+    }
     Intent intent = mActivity.getIntent();
     receiveSharingIntentHelper.sendFileNames(reactContext, intent, promise);
-    mActivity.setIntent(null);
+    //mActivity.setIntent(null);
   }
 
   @ReactMethod

@@ -8,6 +8,7 @@ class ReceiveSharingIntentModule implements IReceiveSharingIntent {
     private isIos: boolean = Platform.OS === "ios";
     private utils: IUtils = new Utils();
     private isClear: boolean = false;
+    private processedIOSFiles: string[] = [];
 
     getReceivedFiles(handler: Function, errorHandler: Function, protocol: string = "ShareMedia"){
         if(this.isIos){
@@ -33,7 +34,8 @@ class ReceiveSharingIntentModule implements IReceiveSharingIntent {
     }
 
     clearReceivedFiles(){
-        this.isClear = true;
+        // this.isClear = true;
+        ReceiveSharingIntent.clearFileNames();
     }
 
     
@@ -41,7 +43,21 @@ class ReceiveSharingIntentModule implements IReceiveSharingIntent {
         if(this.isIos){
             ReceiveSharingIntent.getFileNames(url).then((data: any)=>{         
                  let files = this.utils.sortData(data);
-                 handler(files);
+                 
+                 // ignore the files already shared/canceled
+                 // otherwise, 'getFileNames' method will be returning same data again and again
+                 const filesToShare: any = []
+                 for (let file of files) {
+                    const fileName = file.fileName;
+                    if (!this.processedIOSFiles.includes(fileName)) {
+                      filesToShare.push(file);
+                    }
+                    this.processedIOSFiles.push(fileName);
+                 }
+                 console.log("[getFileNames]iOS ", {files, filesToShare, processedIOSFiles: this.processedIOSFiles});
+
+                 handler(filesToShare);
+
             }).catch((e:any)=>errorHandler(e));
         }else{
             ReceiveSharingIntent.getFileNames().then((fileObject: any) => {

@@ -4,7 +4,9 @@ import MimeTypes from './mimeTypes';
 class Utils implements IUtils{
 
     sortData(data: any): Array<IReturnData> {
-        const objects: IReturnData = { filePath: null, text: null, weblink: null, mimeType: null, contentUri: null, fileName: null, extension: null };
+        const time: Date = new Date();
+        const defaultName: string = time.toString();
+        const objects: IReturnData = { filePath: null, text: null, weblink: null, mimeType: null, contentUri: null, fileName: defaultName, extension: null };
         const file = data;
         if (file.startsWith('text:')) {
             const text = file.replace("text:", "");
