@@ -1,9 +1,9 @@
-import type { IReturnData, IUtils } from './ReceiveSharingIntent.interfaces';
+import type { SharedFile, IUtils } from './ReceiveSharingIntent.interfaces';
 import MimeTypes from './mimeTypes';
 
 class Utils implements IUtils {
-  sortData(data: any): Array<IReturnData> {
-    const objects: IReturnData = {
+  sortData(data: any): Array<SharedFile> {
+    const objects: SharedFile = {
       filePath: null,
       text: null,
       weblink: null,
@@ -16,14 +16,14 @@ class Utils implements IUtils {
     if (file.startsWith('text:')) {
       const text = file.replace('text:', '');
       if (text.startsWith('http')) {
-        const object: Array<IReturnData> = [{ ...objects, weblink: text }];
+        const object: Array<SharedFile> = [{ ...objects, weblink: text }];
         return object;
       }
       let object = [{ ...objects, text: text }];
       return object;
     } else if (file.startsWith('webUrl:')) {
       const weblink: string = file.replace('webUrl:', '');
-      const object: Array<IReturnData> = [{ ...objects, weblink: weblink }];
+      const object: Array<SharedFile> = [{ ...objects, weblink: weblink }];
       return object;
     } else {
       try {

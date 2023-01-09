@@ -1,6 +1,7 @@
 import type {
   IReceiveSharingIntent,
   IUtils,
+  SharedFile,
 } from './ReceiveSharingIntent.interfaces';
 import { Platform, Linking, AppState, NativeModules } from 'react-native';
 import Utils from './utils';
@@ -13,8 +14,8 @@ class ReceiveSharingIntentModule implements IReceiveSharingIntent {
   private isClear: boolean = false;
 
   getReceivedFiles(
-    handler: Function,
-    errorHandler: Function,
+    handler: (files: SharedFile[]) => void,
+    errorHandler: (error: any) => any,
     protocol: string = 'ShareMedia'
   ) {
     if (this.isIos) {
