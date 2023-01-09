@@ -7,7 +7,7 @@ import styles from './index.module.css';
 import AdSense from 'react-adsense';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -16,8 +16,9 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-             Get Started
+            to="/docs/intro"
+          >
+            Get Started
           </Link>
         </div>
       </div>
@@ -26,33 +27,32 @@ function HomepageHeader() {
 }
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
 
-  useEffect(()=>{
+  useEffect(() => {
     const installGoogleAds = () => {
-      const elem = document.createElement("script");
-      elem.src =
-        "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+      const elem = document.createElement('script');
+      elem.src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
       elem.async = true;
       elem.defer = true;
       document.body.insertBefore(elem, document.body.firstChild);
     };
     installGoogleAds();
-  }, [])
-
+  }, []);
 
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      description="Description will go into a meta tag in <head />"
+    >
       <HomepageHeader />
       <main>
-      <AdSense.Google
-          client='ca-pub-6959248551010269'
-          slot='7895558233'
+        <AdSense.Google
+          client="ca-pub-6959248551010269"
+          slot="7895558233"
           style={{ display: 'block' }}
-          format='auto'
-          responsive='true'
+          format="auto"
+          responsive="true"
         />
       </main>
     </Layout>
