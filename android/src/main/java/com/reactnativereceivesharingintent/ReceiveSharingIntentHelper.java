@@ -28,6 +28,9 @@ public class ReceiveSharingIntentHelper {
 
   @RequiresApi(api = Build.VERSION_CODES.KITKAT)
   public void sendFileNames(Context context, Intent intent, Promise promise){
+    if (intent == null) {
+      promise.reject("error","Null intent.");
+    }
     try {
       String action = intent.getAction();
       String type = intent.getType();
@@ -165,6 +168,7 @@ public class ReceiveSharingIntentHelper {
 
 
   public void clearFileNames(Intent intent){
+    if(intent == null) return;
     String type = intent.getType();
     if(type == null) return;
     if (type.startsWith("text")) {
