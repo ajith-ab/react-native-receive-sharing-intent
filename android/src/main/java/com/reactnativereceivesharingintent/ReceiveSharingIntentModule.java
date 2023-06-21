@@ -40,7 +40,6 @@ public class ReceiveSharingIntentModule extends ReactContextBaseJavaModule {
     if(mActivity == null) { return; }
     Intent intent = mActivity.getIntent();
     receiveSharingIntentHelper.sendFileNames(reactContext, intent, promise);
-    mActivity.setIntent(null);
   }
 
   @ReactMethod
@@ -48,7 +47,9 @@ public class ReceiveSharingIntentModule extends ReactContextBaseJavaModule {
     Activity mActivity = getCurrentActivity();
     if(mActivity == null) { return; }
     Intent intent = mActivity.getIntent();
-    receiveSharingIntentHelper.clearFileNames(intent);
+    if (intent != null) {
+      receiveSharingIntentHelper.clearFileNames(intent);
+    }
   }
 
 
