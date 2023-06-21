@@ -36,6 +36,9 @@ class ReceiveSharingIntentModule implements IReceiveSharingIntent {
         this.isClear = true;
     }
 
+    clearFileNames() {
+        ReceiveSharingIntent.clearFileNames();
+    }
     
    protected getFileNames(handler: Function, errorHandler: Function, url: string){
         if(this.isIos){
