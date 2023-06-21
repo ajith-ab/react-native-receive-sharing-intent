@@ -1,6 +1,7 @@
 
 export interface IReceiveSharingIntent{
     getReceivedFiles(handler: Function , errorHandler: Function, protocol: string ): void,
+    clearFileNames() :void,
 }
 
 export interface IUtils{
