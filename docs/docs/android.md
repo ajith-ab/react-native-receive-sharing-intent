@@ -106,6 +106,22 @@ public void onNewIntent(Intent intent) {
   setIntent(intent);
 }
 
+- Or if you have `MainActivity.kt`:
+` <Project_folder>/android/app/src/main/java/com/YOUR_APP/MainActivity.kt` :
+```kt
+// on top of your file
+import android.content.Intent;
+...
+class MainActivity : ReactActivity() {
+...
+override fun onNewIntent(intent: Intent) {
+    super.onNewIntent(intent);
+    setIntent(intent);
+  }
+...
+}
+```
+
 ...
 
 }
