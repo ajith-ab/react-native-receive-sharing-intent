@@ -101,7 +101,12 @@ object FileDirectory {
           val columnIndex = cursor.getColumnIndexOrThrow(column)
           val fileName = cursor.getString(columnIndex)
           Log.i("FileDirectory", "File name: $fileName")
-          targetFile = File(context.cacheDir, fileName)
+          // CVE-2026-58460: _display_name is attacker-controllable via a shared
+          // content:// URI. Sanitize before using it as a destination path so a
+          // malicious name (e.g. "../foo") cannot escape cacheDir. Returns null
+          // for empty or traversal-only names, letting the fallback below
+          // generate a safe name.
+          targetFile = sanitizedCacheFile(context, fileName)
         }
       } finally {
         cursor?.close()
@@ -142,6 +147,26 @@ object FileDirectory {
       cursor?.close()
     }
     return null
+  }
+
+  /**
+   * Build a destination file inside [context]'s cacheDir from an untrusted
+   * display name. Strips any directory components down to the basename and
+   * verifies the resolved path stays within cacheDir. Returns null for empty
+   * or traversal-only names ("", ".", "..") so the caller falls back to a
+   * generated file name. Mitigates path traversal (CVE-2026-58460).
+   */
+  private fun sanitizedCacheFile(context: Context, rawName: String?): File? {
+    val name = File(rawName ?: "").name
+    if (name.isEmpty() || name == "." || name == "..") return null
+    return try {
+      val candidate = File(context.cacheDir, name)
+      val root = context.cacheDir.canonicalPath
+      val resolved = candidate.canonicalPath
+      if (resolved == root || resolved.startsWith(root + File.separator)) candidate else null
+    } catch (e: Exception) {
+      null
+    }
   }
 
 
